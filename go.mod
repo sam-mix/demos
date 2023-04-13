@@ -2,7 +2,10 @@ module demos
 
 go 1.20
 
-require github.com/oschwald/geoip2-golang v1.8.0
+require (
+	github.com/oschwald/geoip2-golang v1.8.0
+	google.golang.org/protobuf v1.30.0
+)
 
 require (
 	github.com/oschwald/maxminddb-golang v1.10.0 // indirect

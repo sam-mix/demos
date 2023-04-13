@@ -14,3 +14,6 @@ tls-client:
 geoip:
 	@go run ./cmd/geoip/main.go
 
+.PHONY: gen-proto
+gen-proto:
+	@protoc --go_out=./pb ./resources/proto/addressbook.proto
