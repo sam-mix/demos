@@ -17,3 +17,11 @@ geoip:
 .PHONY: gen-proto
 gen-proto:
 	@protoc --go_out=./pb ./resources/proto/addressbook.proto
+
+
+.PHONY: tidy
+tidy:
+	@go mod tidy
+
+
+
