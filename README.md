@@ -1,12 +1,12 @@
 # 实验demos
 
-1. tcp tls 
-2. geoip
-3. protobuf 3
-4. gRPC
-5. gorm
-
-
+1. tcp tls 加密 
+2. geoip 根据ip查询城市名称 城市经纬度
+3. protobuf 3  序列化方案
+4. gRPC 远程过程调用框架
+5. gorm 对象关系映射框架
+6. zerolog vs zap 日志框架 
+7. viper 配置工具库或框架
 
 
 
