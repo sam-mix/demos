@@ -7,7 +7,14 @@
 5. gorm 对象关系映射框架
 6. zerolog vs zap 日志框架 
 7. viper 配置工具库或框架
+8. igop go与go+解释器，把go当成脚本语言来运行
 
 
 
 
+
+
+``` bash
+# 向go项目中添加viper库依赖
+go get github.com/spf13/viper
+```
