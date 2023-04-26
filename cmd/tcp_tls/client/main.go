@@ -17,7 +17,7 @@ func main() {
 		Certificates:       []tls.Certificate{cert},
 		InsecureSkipVerify: true,
 	}
-	conn, err := tls.Dial("tcp", "192.168.0.219:8000", &config)
+	conn, err := tls.Dial("tcp", "192.168.0.69:8000", &config)
 	if err != nil {
 		log.Fatalf("client: dial: %s", err)
 	}
