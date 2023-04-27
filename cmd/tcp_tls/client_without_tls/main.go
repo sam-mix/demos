@@ -10,7 +10,7 @@ import (
 
 func main() {
 	var tcpAddr *net.TCPAddr
-	tcpAddr, _ = net.ResolveTCPAddr("tcp", "127.0.0.1:9999")
+	tcpAddr, _ = net.ResolveTCPAddr("tcp", "0.0.0.0:9999")
 
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
 

@@ -2,19 +2,26 @@ package main
 
 import (
 	"bufio"
+	"demos/msg"
 	"fmt"
 	"io"
 	"net"
 	"time"
 )
 
-//tcp server 服务端代码
+// tcp server 服务端代码
+var cmh = &msg.ClientMsgHead{
+	MsgLen: 1,
+	MsgID:  1,
+	SvrID:  0,
+	CCode:  0,
+}
 
 func main() {
 	//定义一个tcp断点
 	var tcpAddr *net.TCPAddr
 	//通过ResolveTCPAddr实例一个具体的tcp断点
-	tcpAddr, _ = net.ResolveTCPAddr("tcp", "0.0.0.0:9999")
+	tcpAddr, _ = net.ResolveTCPAddr("tcp", "0.0.0.0:10000")
 	//打开一个tcp断点监听
 	tcpListener, _ := net.ListenTCP("tcp", tcpAddr)
 	defer tcpListener.Close()
