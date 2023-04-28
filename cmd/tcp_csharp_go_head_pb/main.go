@@ -77,7 +77,7 @@ func handleClientCommunication(conn net.Conn) {
 			fmt.Println("消息总长度: ", n)
 		} else {
 			headBuf := make([]byte, msg.CLIMSGHEADLEN)
-			head := new(msg.ClientMsgHead)
+			head := &msg.ClientMsgHead{}
 			head.UnMsgPackBE(headBuf)
 			fmt.Printf("传过来的消息头:%v\n", head)
 			if uint32(n) != head.MsgLen+msg.CLIMSGHEADLEN {
@@ -102,7 +102,7 @@ func handleClientCommunication(conn net.Conn) {
 		// tcp server 服务端代码
 		var cmh = &msg.ClientMsgHead{
 			MsgLen: uint32(len([]byte(txtInputBuffer))),
-			MsgID:  1,
+			MsgID:  0,
 			SvrID:  0,
 			CCode:  0,
 		}

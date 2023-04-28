@@ -118,7 +118,7 @@ func handleClientCommunication(conn net.Conn) {
 		// tcp server 服务端代码
 		var cmh = &msg.ClientMsgHead{
 			MsgLen: uint32(len([]byte(txtInputBuffer))),
-			MsgID:  1,
+			MsgID:  0,
 			SvrID:  0,
 			CCode:  0,
 		}
