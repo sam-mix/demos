@@ -1,0 +1,79 @@
+version: "3"
+
+services:
+  redis-0:
+    image: redis:6.2.3
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "7000:7000"
+    volumes:
+      - ./conf/redis-0.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-0:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    mem_limit: 1g
+
+  redis-1:
+    image: redis:6.2.3
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "7001:7000"
+    volumes:
+      - ./conf/redis-1.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-1:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    mem_limit: 1g
+
+  redis-2:
+    image: redis:6.2.3
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "7002:7000"
+    volumes:
+      - ./conf/redis-2.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-2:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    mem_limit: 1g
+
+  redis-3:
+    image: redis:6.2.3
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "7003:7000"
+    volumes:
+      - ./conf/redis-3.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-3:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    mem_limit: 1g
+
+  redis-4:
+    image: redis:6.2.3
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "7004:7000"
+    volumes:
+      - ./conf/redis-4.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-4:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    mem_limit: 1g
+
+  redis-5:
+    image: redis:6.2.3
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    ports:
+      - "7005:7000"
+    volumes:
+      - ./conf/redis-5.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis-5:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    mem_limit: 1g
+
+networks:
+  default:
+    external:
+      name: redis-cluster
