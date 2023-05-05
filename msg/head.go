@@ -8,5 +8,5 @@ type ClientMsgHead struct {
 	CCode  int8   // 校验值
 }
 
-const CLIMSGHEADLEN = 2 + 4 + 2 + 1
+const CLIMSGHEADLEN = 4 + 2 + 2 + 1
 const MAXBODYLEN = 1024 * 8

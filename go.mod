@@ -3,8 +3,11 @@ module demos
 go 1.20
 
 require (
+	github.com/golang/protobuf v1.5.0
 	github.com/goplus/igop v0.13.1
 	github.com/oschwald/geoip2-golang v1.8.0
+	github.com/panjf2000/ants/v2 v2.4.7
+	github.com/panjf2000/gnet v1.6.7
 	go.uber.org/zap v1.24.0
 	google.golang.org/protobuf v1.30.0
 )
@@ -20,6 +23,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/qiniu/x v1.11.9 // indirect
 	github.com/stretchr/testify v1.8.1 // indirect
+	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/visualfc/funcval v0.1.3 // indirect
 	github.com/visualfc/goembed v0.3.2 // indirect
 	github.com/visualfc/goid v0.2.0 // indirect
@@ -29,4 +33,5 @@ require (
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect
 	golang.org/x/tools v0.5.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 )
