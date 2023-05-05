@@ -15,7 +15,7 @@ func main() {
 	logger := createLogger()
 	defer logger.Sync()
 
-	for i := 0; i < 40960; i++ {
+	for i := 0; i < 409600; i++ {
 		logger.Info("test log", zap.Int("i", i))
 	}
 }
