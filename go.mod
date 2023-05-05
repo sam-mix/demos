@@ -3,13 +3,13 @@ module demos
 go 1.20
 
 require (
-	github.com/golang/protobuf v1.5.0
 	github.com/goplus/igop v0.13.1
 	github.com/oschwald/geoip2-golang v1.8.0
 	github.com/panjf2000/ants/v2 v2.4.7
 	github.com/panjf2000/gnet v1.6.7
 	go.uber.org/zap v1.24.0
 	google.golang.org/protobuf v1.30.0
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
 
 require (
@@ -33,5 +33,4 @@ require (
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect
 	golang.org/x/tools v0.5.0 // indirect
-	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 )
