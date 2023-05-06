@@ -1,8 +1,14 @@
-.PHONY: all plugin main
-all: plugin main
+SOURCES=main.go plugins/plugin.go
+PLUGIN_SO=plugins/plugin.so
+MAIN=main
 
-plugin:
-    go build -buildmode=plugin -o plugins/plugin.so plugins/plugin.go
+.PHONY: all clean
 
-main:
-     go build -o main main.go
+all: $(MAIN)
+
+$(MAIN): $(SOURCES)
+	go build -buildmode=plugin -o $(PLUGIN_SO) plugins/plugin.go
+	go build -o $(MAIN) .
+
+clean:
+	rm -rf $(PLUGIN_SO) $(MAIN)

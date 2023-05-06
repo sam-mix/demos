@@ -8,62 +8,63 @@ import (
 	"time"
 )
 
+type Plugin struct{}
+
+func (Plugin) DoSomething() string {
+	return ""
+}
+
 func main() {
 	p, err := plugin.Open("./plugins/plugin.so")
 	if err != nil {
-		fmt.Printf("Failed to open plugin: %s\n", err)
+		fmt.Printf("failed to open plugin: %s\n", err)
 		os.Exit(-1)
 	}
 
 	var s Plugin
-	sSym, err := p.Lookup("Plugin")
+	symPlugin, err := p.Lookup("Plugin")
 	if err != nil {
-		fmt.Printf("Failed to lookup plugin: %s\n", err)
+		fmt.Printf("failed to lookup symbol: %s\n", err)
 		os.Exit(-1)
 	}
 
-	s, ok := sSym.(Plugin)
+	s, ok := symPlugin.(Plugin)
 	if !ok {
-		fmt.Printf("Invalid plugin symbol\n")
+		fmt.Printf("invalid plugin symbol\n")
 		os.Exit(-1)
 	}
 
-	fmt.Println(s.DoSomething())
+	t := time.NewTicker(10 * time.Second)
 
-	// 自动更新
-	for {
+	for range t.C {
 		cmd := exec.Command("go", "build", "-buildmode=plugin", "-o", "./plugins/plugin.so", "./plugins/plugin.go")
 		err := cmd.Run()
 		if err != nil {
 			fmt.Println(err)
-			time.Sleep(time.Second * 5)
 			continue
 		}
 
 		p, err = plugin.Open("./plugins/plugin.so")
 		if err != nil {
-			fmt.Printf("Failed to open plugin: %s\n", err)
+			fmt.Printf("failed to open plugin: %s\n", err)
 			continue
 		}
 
-		sSym, err = p.Lookup("Plugin")
+		var news Plugin
+		symPlugin, err := p.Lookup("Plugin")
 		if err != nil {
-			fmt.Printf("Failed to lookup plugin: %s\n", err)
+			fmt.Printf("failed to lookup symbol: %s\n", err)
 			continue
 		}
 
-		s, ok = sSym.(Plugin)
+		news, ok = symPlugin.(Plugin)
 		if !ok {
-			fmt.Printf("Invalid plugin symbol\n")
-			os.Exit(-1)
+			fmt.Printf("invalid plugin symbol\n")
+			continue
 		}
+
+		s = news
 
 		fmt.Println(s.DoSomething())
-
-		time.Sleep(time.Second * 5)
 	}
-}
-
-type Plugin interface {
-	DoSomething() string
 }

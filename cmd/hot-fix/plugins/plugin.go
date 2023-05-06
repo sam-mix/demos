@@ -2,8 +2,10 @@
 
 package main
 
+import "time"
+
 type Plugin struct{}
 
 func (p Plugin) DoSomething() string {
-	return "Hello, World!"
+	return "Hello, World! " + time.Now().String()
 }
