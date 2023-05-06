@@ -1,0 +1,41 @@
+# Redis 监听的端口号
+port ${PORT}
+
+# Redis 的密码，用于认证连接
+requirepass 123456
+
+# 如果 Redis 实例是主节点，此选项设置用于认证从节点的密码
+masterauth 123456
+
+# 是否启用保护模式。如果设置为 yes，则只有通过 bind 指定的 IP 地址才能访问 Redis。如果设置为 no，则可以从任何 IP 地址访问 Redis。
+protected-mode no
+
+# 是否以守护进程的方式运行 Redis。如果设置为 yes，则 Redis 将在后台运行。如果设置为 no，则 Redis 将在前台运行。
+daemonize no
+
+# 是否启用 AOF 持久化模式。如果设置为 yes，则 Redis 将在后台保存写操作的日志，以便在重启后恢复数据。如果设置为 no，则 Redis 只使用内存作为存储介质，可能会出现数据丢失。
+appendonly yes
+
+# 是否启用 Redis 集群模式。
+cluster-enabled yes
+
+# Redis 集群模式的配置文件。
+cluster-config-file nodes.conf
+
+# 在 Redis 集群中，一个节点在被认为是离线之前需要多长时间没有响应。
+cluster-node-timeout 15000
+
+# 用于节点之间通信的 IP 地址。
+cluster-announce-ip ${HOST}
+
+# 用于节点之间通信的端口号。
+cluster-announce-port ${PORT}
+
+# 用于节点之间通信的总线端口号。
+cluster-announce-bus-port 1${PORT}
+
+# 每个实例最大使用内存为1GB
+maxmemory 1gb
+
+# 指定 Redis 淘汰策略，allkeys-lru 表示采用 LRU 算法淘汰过期键和空间不足键。
+maxmemory-policy allkeys-lru
