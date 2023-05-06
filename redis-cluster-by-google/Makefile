@@ -9,6 +9,7 @@ up:
 	@sleep 10
 	@echo 创建集群中....
 	@docker exec -it redis-6371 redis-cli -h 192.168.0.219 -p 6371 -a 123456 --cluster create 192.168.0.219:6371 192.168.0.219:6372 192.168.0.219:6373 192.168.0.219:6374 192.168.0.219:6375 192.168.0.219:6376 --cluster-replicas 1
+	@sleep 5
 	@echo 创建集群完成
 	@echo redis-cli hello =================================================
 	@docker exec -it redis-6371 redis-cli -h 192.168.0.219 -p 6371 -a 123456 hello
@@ -25,5 +26,10 @@ down:
 test:
 	@sleep 5 
 	@echo hello
+
+.PHONY: clean
+clean:
+	@/usr/bin/rm -rf ./data/*
+
 
 
