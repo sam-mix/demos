@@ -1,0 +1,7 @@
+environment: pre
+pre:
+  db:
+    addr: pre.host.com
+    port: 3307
+  log:
+    level: warn

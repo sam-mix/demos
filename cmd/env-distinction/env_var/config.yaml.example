@@ -1,0 +1,29 @@
+environment: dev
+
+dev:
+  db:
+    addr: localhost
+    port: "3306"
+  log:
+    level: debug
+
+test:
+  db:
+    addr: test.host.com
+    port: "3306"
+  log:
+    level: info
+
+pre:
+  db:
+    addr: pre.host.com
+    port: "3307"
+  log:
+    level: warn
+
+prod:
+  db:
+    addr: prod.host.com
+    port: "3308"
+  log:
+    level: error
