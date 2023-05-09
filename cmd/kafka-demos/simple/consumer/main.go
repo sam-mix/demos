@@ -12,8 +12,8 @@ import (
 func main() {
 	// 创建Kafka消费者
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers: []string{"127.0.0.1:9092"},
-		Topic:   "test-topic",
+		Brokers: []string{"127.0.0.1:9095", "127.0.0.1:9096", "127.0.0.1:9098"},
+		Topic:   "kafka_demo",
 	})
 
 	// 创建一个context用于取消消费者的读取

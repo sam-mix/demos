@@ -14,11 +14,11 @@ func SyncProduce() {
 	config.Producer.Return.Successes = true
 
 	msg := &sarama.ProducerMessage{}
-	msg.Topic = "iris"
+	msg.Topic = "kafka_demo"
 	content := "this is a sync message"
 	msg.Value = sarama.StringEncoder(content)
 
-	client, err := sarama.NewSyncProducer([]string{"127.0.0.1:9091", "127.0.0.1:9092"}, config)
+	client, err := sarama.NewSyncProducer([]string{"127.0.0.1:9095", "127.0.0.1:9096", "127.0.0.1:9098"}, config)
 	if err != nil {
 		fmt.Println("producer close, err:", err)
 		return
@@ -41,7 +41,7 @@ func AsyncProduce() {
 	config.Producer.Partitioner = sarama.NewRandomPartitioner
 	config.Producer.Return.Successes = true
 
-	client, err := sarama.NewAsyncProducer([]string{"127.0.0.1:9092"}, config)
+	client, err := sarama.NewAsyncProducer([]string{"127.0.0.1:9095", "127.0.0.1:9096", "127.0.0.1:9098"}, config)
 	if err != nil {
 		fmt.Println("error is:", err.Error())
 		return
@@ -63,7 +63,7 @@ func AsyncProduce() {
 	}(client)
 
 	msg := &sarama.ProducerMessage{
-		Topic: "iris",
+		Topic: "kafka_demo",
 		Value: sarama.ByteEncoder("this is a async message"),
 	}
 	client.Input() <- msg

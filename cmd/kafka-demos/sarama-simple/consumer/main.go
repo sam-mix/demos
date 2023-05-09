@@ -17,8 +17,8 @@ func main() {
 
 func KafkaConsumerCluster(consumerId string) {
 
-	brokers := []string{"127.0.0.1:9092"}
-	topics := []string{"iris"}
+	brokers := []string{"127.0.0.1:9095", "127.0.0.1:9096", "127.0.0.1:9098"}
+	topics := []string{"kafka_demo"}
 
 	config := KafkaCluster.NewConfig()
 	config.Consumer.Return.Errors = true

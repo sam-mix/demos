@@ -10,9 +10,12 @@ import (
 	"github.com/segmentio/kafka-go"
 )
 
+var (
+	brokers = []string{"127.0.0.1:9095", "127.0.0.1:9096", "127.0.0.1:9098"}
+)
+
 const (
-	brokers  = "localhost:9092"
-	topic    = "test-topic"
+	topic    = "kafka_demo"
 	groupId  = "test-group"
 	clientId = "test-client"
 )
@@ -51,7 +54,7 @@ func main() {
 
 	// 创建Kafka消费者
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:  []string{brokers},
+		Brokers:  brokers,
 		Topic:    topic,
 		GroupID:  groupId,
 		MinBytes: 10e3,             // 最小消息字节数
@@ -76,7 +79,7 @@ func main() {
 
 	// 创建Kafka生产者
 	w := kafka.NewWriter(kafka.WriterConfig{
-		Brokers:  []string{brokers},
+		Brokers:  brokers,
 		Topic:    topic,
 		Balancer: &kafka.LeastBytes{},
 		Async:    true, // 异步发送消息
