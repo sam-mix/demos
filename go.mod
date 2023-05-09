@@ -15,6 +15,7 @@ require (
 	github.com/rs/zerolog v1.29.1
 	github.com/spf13/viper v1.15.0
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20230505001653-27d362ae9442
+	go.etcd.io/etcd/api/v3 v3.5.6
 	go.etcd.io/etcd/client/v3 v3.5.6
 	go.uber.org/zap v1.24.0
 	google.golang.org/protobuf v1.30.0
@@ -65,7 +66,6 @@ require (
 	github.com/visualfc/goid v0.2.0 // indirect
 	github.com/visualfc/xtype v0.2.0 // indirect
 	github.com/xiang90/probing v0.0.0-20221125231312-a49e3df8f510 // indirect
-	go.etcd.io/etcd/api/v3 v3.5.6 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.6 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
