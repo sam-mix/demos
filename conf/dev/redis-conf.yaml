@@ -1,0 +1,9 @@
+# redis配置文件
+
+# redis连接信息
+url: "127.0.0.1:6371"
+password: "123456"
+db: 0
+
+# 连接池配置
+pool_size: 10
