@@ -12,6 +12,14 @@ type User struct {
 	Email string
 }
 
+// 玩家
+type Player struct {
+	gorm.Model
+	Name string // 名字
+	Gold uint64 // 金币
+	Lev  uint16 // 等级
+}
+
 func main() {
 	// // 配置日志
 	// logFileName := "log/application.log"
@@ -38,14 +46,14 @@ func main() {
 	// logger := zerolog.New(fileWriter).With().Timestamp().Logger()
 
 	// 配置数据库
-	dsn := "root:password@tcp(127.0.0.1:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), nil)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Failed to connect to database")
 	}
 
 	// 自动迁移表结构
-	err = db.AutoMigrate(&User{})
+	err = db.AutoMigrate(&User{}, &Player{})
 	if err != nil {
 		log.Fatal().Err(err).Msg("Failed to migrate database")
 	}
