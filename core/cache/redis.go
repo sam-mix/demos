@@ -2,6 +2,7 @@ package cache
 
 import (
 	"flag"
+	"log"
 	"sync"
 
 	"github.com/redis/go-redis/v9"
@@ -15,7 +16,8 @@ var (
 
 func init() {
 	once.Do(func() {
-		configFile := flag.String("redis-conf", "./conf/dev/redis.conf", "redis 配置路径")
+		log.Println("redis init()")
+		configFile := flag.String("redis-conf", "./conf/dev/redis.conf", "redis 配置文件路径")
 		flag.Parse()
 		if RedisClient == nil {
 			viper.SetConfigFile(*configFile)

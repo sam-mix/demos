@@ -1,0 +1,31 @@
+dev:
+  redis-conf: ./conf/dev/redis-conf.yaml
+  mysql-conf: ./conf/dev/mysql-conf.yaml
+  zerolog-conf: ./conf/dev/zerolog-conf.yaml
+  etcd-client3-conf: ./conf/dev/etcd-client3-conf.yaml
+  server-conf: ./conf/dev/server-conf.yaml
+  zap-conf: ./conf/dev/zap-conf.yaml
+
+test:
+  redis-conf: ./conf/test/redis-conf.yaml
+  mysql-conf: ./conf/test/mysql-conf.yaml
+  zerolog-conf: ./conf/test/zerolog-conf.yaml
+  etcd-client3-conf: ./conf/test/etcd-client3-conf.yaml
+  server-conf: ./conf/test/server-conf.yaml
+  zap-conf: ./conf/test/zap-conf.yaml
+
+pre:
+  redis-conf: ./conf/pre/redis-conf.yaml
+  mysql-conf: ./conf/pre/mysql-conf.yaml
+  zerolog-conf: ./conf/pre/zerolog-conf.yaml
+  etcd-client3-conf: ./conf/pre/etcd-client3-conf.yaml
+  server-conf: ./conf/pre/server-conf.yaml
+  zap-conf: ./conf/pre/zap-conf.yaml
+
+prod:
+  redis-conf: ./conf/prod/redis-conf.yaml
+  mysql-conf: ./conf/prod/mysql-conf.yaml
+  zerolog-conf: ./conf/prod/zerolog-conf.yaml
+  etcd-client3-conf: ./conf/prod/etcd-client3-conf.yaml
+  server-conf: ./conf/prod/server-conf.yaml
+  zap-conf: ./conf/prod/zap-conf.yaml
