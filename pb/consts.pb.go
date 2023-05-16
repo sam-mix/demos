@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.30.0
 // 	protoc        v4.22.3
-// source: cfg/consts.proto
+// source: consts.proto
 
 package pb
 
@@ -24,16 +24,28 @@ const (
 type MSG_ID int32
 
 const (
-	MSG_ID_HEART MSG_ID = 0 // 心跳
+	MSG_ID_HEART           MSG_ID = 0 // 心跳
+	MSG_ID_LOGIN           MSG_ID = 1 // 登录
+	MSG_ID_LOUOUT          MSG_ID = 2 // 登出
+	MSG_ID_CHOISE_WAN      MSG_ID = 3 //  选玩法
+	MSG_ID_CHOISE_WAN_FAST MSG_ID = 4 // 快速选玩法
 )
 
 // Enum value maps for MSG_ID.
 var (
 	MSG_ID_name = map[int32]string{
 		0: "HEART",
+		1: "LOGIN",
+		2: "LOUOUT",
+		3: "CHOISE_WAN",
+		4: "CHOISE_WAN_FAST",
 	}
 	MSG_ID_value = map[string]int32{
-		"HEART": 0,
+		"HEART":           0,
+		"LOGIN":           1,
+		"LOUOUT":          2,
+		"CHOISE_WAN":      3,
+		"CHOISE_WAN_FAST": 4,
 	}
 )
 
@@ -48,11 +60,11 @@ func (x MSG_ID) String() string {
 }
 
 func (MSG_ID) Descriptor() protoreflect.EnumDescriptor {
-	return file_cfg_consts_proto_enumTypes[0].Descriptor()
+	return file_consts_proto_enumTypes[0].Descriptor()
 }
 
 func (MSG_ID) Type() protoreflect.EnumType {
-	return &file_cfg_consts_proto_enumTypes[0]
+	return &file_consts_proto_enumTypes[0]
 }
 
 func (x MSG_ID) Number() protoreflect.EnumNumber {
@@ -61,35 +73,209 @@ func (x MSG_ID) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MSG_ID.Descriptor instead.
 func (MSG_ID) EnumDescriptor() ([]byte, []int) {
-	return file_cfg_consts_proto_rawDescGZIP(), []int{0}
+	return file_consts_proto_rawDescGZIP(), []int{0}
 }
 
-var File_cfg_consts_proto protoreflect.FileDescriptor
+// 性别
+type GENDER int32
 
-var file_cfg_consts_proto_rawDesc = []byte{
-	0x0a, 0x10, 0x63, 0x66, 0x67, 0x2f, 0x63, 0x6f, 0x6e, 0x73, 0x74, 0x73, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x2a, 0x13, 0x0a, 0x06, 0x4d, 0x53, 0x47, 0x5f, 0x49, 0x44, 0x12, 0x09, 0x0a, 0x05,
-	0x48, 0x45, 0x41, 0x52, 0x54, 0x10, 0x00, 0x42, 0x0b, 0x5a, 0x04, 0x2e, 0x3b, 0x70, 0x62, 0xaa,
-	0x02, 0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+const (
+	GENDER_GENDER_UNDEFINED GENDER = 0 // 不使用
+	GENDER_MALE             GENDER = 1 // 男
+	GENDER_FEMALE           GENDER = 2 // 女
+	GENDER_UNKNOW           GENDER = 3 // 保密
+)
+
+// Enum value maps for GENDER.
+var (
+	GENDER_name = map[int32]string{
+		0: "GENDER_UNDEFINED",
+		1: "MALE",
+		2: "FEMALE",
+		3: "UNKNOW",
+	}
+	GENDER_value = map[string]int32{
+		"GENDER_UNDEFINED": 0,
+		"MALE":             1,
+		"FEMALE":           2,
+		"UNKNOW":           3,
+	}
+)
+
+func (x GENDER) Enum() *GENDER {
+	p := new(GENDER)
+	*p = x
+	return p
+}
+
+func (x GENDER) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (GENDER) Descriptor() protoreflect.EnumDescriptor {
+	return file_consts_proto_enumTypes[1].Descriptor()
+}
+
+func (GENDER) Type() protoreflect.EnumType {
+	return &file_consts_proto_enumTypes[1]
+}
+
+func (x GENDER) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use GENDER.Descriptor instead.
+func (GENDER) EnumDescriptor() ([]byte, []int) {
+	return file_consts_proto_rawDescGZIP(), []int{1}
+}
+
+// 结果
+type RESULT int32
+
+const (
+	RESULT_SUCCESS RESULT = 0 // 成功
+	RESULT_FAILED  RESULT = 1 // 失败
+)
+
+// Enum value maps for RESULT.
+var (
+	RESULT_name = map[int32]string{
+		0: "SUCCESS",
+		1: "FAILED",
+	}
+	RESULT_value = map[string]int32{
+		"SUCCESS": 0,
+		"FAILED":  1,
+	}
+)
+
+func (x RESULT) Enum() *RESULT {
+	p := new(RESULT)
+	*p = x
+	return p
+}
+
+func (x RESULT) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (RESULT) Descriptor() protoreflect.EnumDescriptor {
+	return file_consts_proto_enumTypes[2].Descriptor()
+}
+
+func (RESULT) Type() protoreflect.EnumType {
+	return &file_consts_proto_enumTypes[2]
+}
+
+func (x RESULT) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use RESULT.Descriptor instead.
+func (RESULT) EnumDescriptor() ([]byte, []int) {
+	return file_consts_proto_rawDescGZIP(), []int{2}
+}
+
+// 玩法类型
+type WAN_TYPE int32
+
+const (
+	WAN_TYPE_WAN_TYPE_UNDEFINED WAN_TYPE = 0 // 不使用
+	WAN_TYPE_XL                 WAN_TYPE = 1 // 血流
+	WAN_TYPE_XZ                 WAN_TYPE = 2 // 血战
+	WAN_TYPE_HZXL               WAN_TYPE = 3 // 红中血流
+	WAN_TYPE_HZXZ               WAN_TYPE = 4 // 红中血战
+)
+
+// Enum value maps for WAN_TYPE.
+var (
+	WAN_TYPE_name = map[int32]string{
+		0: "WAN_TYPE_UNDEFINED",
+		1: "XL",
+		2: "XZ",
+		3: "HZXL",
+		4: "HZXZ",
+	}
+	WAN_TYPE_value = map[string]int32{
+		"WAN_TYPE_UNDEFINED": 0,
+		"XL":                 1,
+		"XZ":                 2,
+		"HZXL":               3,
+		"HZXZ":               4,
+	}
+)
+
+func (x WAN_TYPE) Enum() *WAN_TYPE {
+	p := new(WAN_TYPE)
+	*p = x
+	return p
+}
+
+func (x WAN_TYPE) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (WAN_TYPE) Descriptor() protoreflect.EnumDescriptor {
+	return file_consts_proto_enumTypes[3].Descriptor()
+}
+
+func (WAN_TYPE) Type() protoreflect.EnumType {
+	return &file_consts_proto_enumTypes[3]
+}
+
+func (x WAN_TYPE) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use WAN_TYPE.Descriptor instead.
+func (WAN_TYPE) EnumDescriptor() ([]byte, []int) {
+	return file_consts_proto_rawDescGZIP(), []int{3}
+}
+
+var File_consts_proto protoreflect.FileDescriptor
+
+var file_consts_proto_rawDesc = []byte{
+	0x0a, 0x0c, 0x63, 0x6f, 0x6e, 0x73, 0x74, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2a, 0x4f,
+	0x0a, 0x06, 0x4d, 0x53, 0x47, 0x5f, 0x49, 0x44, 0x12, 0x09, 0x0a, 0x05, 0x48, 0x45, 0x41, 0x52,
+	0x54, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x4c, 0x4f, 0x47, 0x49, 0x4e, 0x10, 0x01, 0x12, 0x0a,
+	0x0a, 0x06, 0x4c, 0x4f, 0x55, 0x4f, 0x55, 0x54, 0x10, 0x02, 0x12, 0x0e, 0x0a, 0x0a, 0x43, 0x48,
+	0x4f, 0x49, 0x53, 0x45, 0x5f, 0x57, 0x41, 0x4e, 0x10, 0x03, 0x12, 0x13, 0x0a, 0x0f, 0x43, 0x48,
+	0x4f, 0x49, 0x53, 0x45, 0x5f, 0x57, 0x41, 0x4e, 0x5f, 0x46, 0x41, 0x53, 0x54, 0x10, 0x04, 0x2a,
+	0x40, 0x0a, 0x06, 0x47, 0x45, 0x4e, 0x44, 0x45, 0x52, 0x12, 0x14, 0x0a, 0x10, 0x47, 0x45, 0x4e,
+	0x44, 0x45, 0x52, 0x5f, 0x55, 0x4e, 0x44, 0x45, 0x46, 0x49, 0x4e, 0x45, 0x44, 0x10, 0x00, 0x12,
+	0x08, 0x0a, 0x04, 0x4d, 0x41, 0x4c, 0x45, 0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x46, 0x45, 0x4d,
+	0x41, 0x4c, 0x45, 0x10, 0x02, 0x12, 0x0a, 0x0a, 0x06, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x10,
+	0x03, 0x2a, 0x21, 0x0a, 0x06, 0x52, 0x45, 0x53, 0x55, 0x4c, 0x54, 0x12, 0x0b, 0x0a, 0x07, 0x53,
+	0x55, 0x43, 0x43, 0x45, 0x53, 0x53, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x46, 0x41, 0x49, 0x4c,
+	0x45, 0x44, 0x10, 0x01, 0x2a, 0x46, 0x0a, 0x08, 0x57, 0x41, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45,
+	0x12, 0x16, 0x0a, 0x12, 0x57, 0x41, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x44,
+	0x45, 0x46, 0x49, 0x4e, 0x45, 0x44, 0x10, 0x00, 0x12, 0x06, 0x0a, 0x02, 0x58, 0x4c, 0x10, 0x01,
+	0x12, 0x06, 0x0a, 0x02, 0x58, 0x5a, 0x10, 0x02, 0x12, 0x08, 0x0a, 0x04, 0x48, 0x5a, 0x58, 0x4c,
+	0x10, 0x03, 0x12, 0x08, 0x0a, 0x04, 0x48, 0x5a, 0x58, 0x5a, 0x10, 0x04, 0x42, 0x0b, 0x5a, 0x04,
+	0x2e, 0x3b, 0x70, 0x62, 0xaa, 0x02, 0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
-	file_cfg_consts_proto_rawDescOnce sync.Once
-	file_cfg_consts_proto_rawDescData = file_cfg_consts_proto_rawDesc
+	file_consts_proto_rawDescOnce sync.Once
+	file_consts_proto_rawDescData = file_consts_proto_rawDesc
 )
 
-func file_cfg_consts_proto_rawDescGZIP() []byte {
-	file_cfg_consts_proto_rawDescOnce.Do(func() {
-		file_cfg_consts_proto_rawDescData = protoimpl.X.CompressGZIP(file_cfg_consts_proto_rawDescData)
+func file_consts_proto_rawDescGZIP() []byte {
+	file_consts_proto_rawDescOnce.Do(func() {
+		file_consts_proto_rawDescData = protoimpl.X.CompressGZIP(file_consts_proto_rawDescData)
 	})
-	return file_cfg_consts_proto_rawDescData
+	return file_consts_proto_rawDescData
 }
 
-var file_cfg_consts_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_cfg_consts_proto_goTypes = []interface{}{
-	(MSG_ID)(0), // 0: MSG_ID
+var file_consts_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_consts_proto_goTypes = []interface{}{
+	(MSG_ID)(0),   // 0: MSG_ID
+	(GENDER)(0),   // 1: GENDER
+	(RESULT)(0),   // 2: RESULT
+	(WAN_TYPE)(0), // 3: WAN_TYPE
 }
-var file_cfg_consts_proto_depIdxs = []int32{
+var file_consts_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -97,27 +283,27 @@ var file_cfg_consts_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_cfg_consts_proto_init() }
-func file_cfg_consts_proto_init() {
-	if File_cfg_consts_proto != nil {
+func init() { file_consts_proto_init() }
+func file_consts_proto_init() {
+	if File_consts_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cfg_consts_proto_rawDesc,
-			NumEnums:      1,
+			RawDescriptor: file_consts_proto_rawDesc,
+			NumEnums:      4,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_cfg_consts_proto_goTypes,
-		DependencyIndexes: file_cfg_consts_proto_depIdxs,
-		EnumInfos:         file_cfg_consts_proto_enumTypes,
+		GoTypes:           file_consts_proto_goTypes,
+		DependencyIndexes: file_consts_proto_depIdxs,
+		EnumInfos:         file_consts_proto_enumTypes,
 	}.Build()
-	File_cfg_consts_proto = out.File
-	file_cfg_consts_proto_rawDesc = nil
-	file_cfg_consts_proto_goTypes = nil
-	file_cfg_consts_proto_depIdxs = nil
+	File_consts_proto = out.File
+	file_consts_proto_rawDesc = nil
+	file_consts_proto_goTypes = nil
+	file_consts_proto_depIdxs = nil
 }

@@ -13,8 +13,8 @@ func (mh *ClientMsgHead) MsgPackBE() ([]byte, error) {
 
 func (mh *ClientMsgHead) UnMsgPackBE(DataBuf []byte) error {
 
-	bufMsgLen := bytes.NewBuffer(DataBuf[:2])
-	bufMsgID := bytes.NewBuffer(DataBuf[2:6])
+	bufMsgLen := bytes.NewBuffer(DataBuf[:4])
+	bufMsgID := bytes.NewBuffer(DataBuf[4:6])
 	bufSvrID := bytes.NewBuffer(DataBuf[6:8])
 	bufCCode := bytes.NewBuffer(DataBuf[8:9])
 
