@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package todolist;
+
+option go_package = ".;todolist";
+
+service TodoList {
+  rpc AddTask(AddTaskRequest) returns (AddTaskResponse) {}
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse) {}
+  rpc GetTasks(GetTasksRequest) returns (GetTasksResponse) {}
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse) {}
+}
+
+message AddTaskRequest {
+  string task_name = 1;
+}
+
+message AddTaskResponse {
+  int32 task_id = 1;
+}
+
+message DeleteTaskRequest {
+  int32 task_id = 1;
+}
+
+message DeleteTaskResponse {}
+
+message GetTasksRequest {}
+
+message Task {
+  int32 id = 1;
+  string name = 2;
+}
+
+message GetTasksResponse {
+  repeated Task tasks = 1;
+}
+
+message UpdateTaskRequest {
+  int32 task_id = 1;
+  string task_name = 2;
+}
+
+message UpdateTaskResponse {}
