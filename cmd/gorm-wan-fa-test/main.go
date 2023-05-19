@@ -64,7 +64,7 @@ func (WanFaModel) TableName() string {
 }
 func main() {
 	// Connect to MySQL database
-	dsn := "root:123456@tcp(127.0.0.1:3306)/testdb?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:123456@tcp(127.0.0.1:3306)/lobby?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect to database")
@@ -72,4 +72,20 @@ func main() {
 
 	// Auto-migrate the "my_users" table
 	db.AutoMigrate(&WanFaModel{})
+	// db.Create(&WanFaModel{
+	// 	WanId:       13,
+	// 	Name:        "东北麻将",
+	// 	Sort:        7,
+	// 	SecondWanId: 14,
+	// 	SecondName:  "东北麻将不洗牌",
+	// 	ThirdWanId:  0,
+	// 	ThirdName:   "",
+	// })
+	wanFas := FindAllWanFa(db)
+	fmt.Println(wanFas)
+}
+
+func FindAllWanFa(db *gorm.DB) (result []WanFaModel) {
+	db.Find(&result)
+	return
 }
