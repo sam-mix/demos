@@ -4,7 +4,6 @@ import (
 	"io"
 	"os"
 	"runtime/debug"
-	"strconv"
 	"sync"
 	"time"
 
@@ -22,27 +21,22 @@ func Get() zerolog.Logger {
 		zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
 		zerolog.TimeFieldFormat = time.RFC3339Nano
 
-		logLevel, err := strconv.Atoi(os.Getenv("LOG_LEVEL"))
-		if err != nil {
-			logLevel = int(zerolog.InfoLevel) // default to INFO
-		}
+		logLevel := int(zerolog.DebugLevel) // default to INFO
 
 		var output io.Writer = zerolog.ConsoleWriter{
 			Out:        os.Stdout,
 			TimeFormat: time.RFC3339,
 		}
 
-		if os.Getenv("APP_ENV") != "development" {
-			fileLogger := &lumberjack.Logger{
-				Filename:   "./logs/wikipedia-demo.log",
-				MaxSize:    5, //
-				MaxBackups: 10,
-				MaxAge:     14,
-				Compress:   true,
-			}
-
-			output = zerolog.MultiLevelWriter(os.Stderr, fileLogger)
+		fileLogger := &lumberjack.Logger{
+			Filename:   "./logs/wikipedia-demo.log",
+			MaxSize:    5,
+			MaxBackups: 10,
+			MaxAge:     14,
+			Compress:   true,
 		}
+
+		output = zerolog.MultiLevelWriter(os.Stderr, fileLogger)
 
 		var gitRevision string
 

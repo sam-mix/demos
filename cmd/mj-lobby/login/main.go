@@ -7,17 +7,29 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"net"
-	"time"
 
 	"google.golang.org/protobuf/proto"
 )
 
+func randString(n int) string {
+	var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+
+	return string(b)
+}
+
 // 发送心跳请求
 func sendHeartbeat(conn net.Conn) error {
+
 	// 创建心跳请求消息
 	c2s := pb.C2SLogin{
-		Acc: "hello",
+		Acc: randString(10),
 	}
 
 	// 将请求消息序列化为字节数组
@@ -32,7 +44,8 @@ func sendHeartbeat(conn net.Conn) error {
 	head.CCode = int8(0)
 	headBuf, err := head.MsgPackBE()
 	if err != nil {
-		log.Fatalln("proto.Marshal error:", err)
+		// log.Fatalln("proto.Marshal error:", err)
+		log.Println("proto.Marshal error:", err)
 	}
 	messageBuf := append(headBuf, data...)
 	// 发送心跳请求消息
@@ -41,7 +54,7 @@ func sendHeartbeat(conn net.Conn) error {
 		return err
 	}
 
-	fmt.Println("Sent a heartbeat request")
+	// fmt.Println("Sent a heartbeat request")
 
 	return nil
 }
@@ -50,24 +63,30 @@ func sendHeartbeat(conn net.Conn) error {
 func receiveHeartbeat(conn net.Conn) error {
 	headBuf, err := RecvMessage(conn, msg.CLIMSGHEADLEN)
 	if err != nil {
-		log.Fatalln(err)
+		// log.Fatalln(err)
+		log.Println(err)
 	}
 	headMsg := new(msg.ClientMsgHead)
 	err = headMsg.UnMsgPackBE(headBuf)
 	if err != nil {
-		log.Fatalln(err)
+		// log.Fatalln(err)
+		log.Println(err)
 	}
 	fmt.Println("headMsg:", headMsg)
 	bodyBuf, err := RecvMessage(conn, int(headMsg.MsgLen))
 	if err != nil {
-		log.Fatalln(err)
+		// log.Fatalln(err)
+		log.Println(err)
 	}
 
 	// 反序列化响应消息
 	s2c := pb.S2CLogin{}
 	err = proto.Unmarshal(bodyBuf, &s2c)
 	if err != nil {
-		panic(err)
+		// panic(err)
+		// log.Fatalln(err)
+		log.Println(err)
+		return nil
 	}
 
 	// 输出响应时间戳
@@ -86,9 +105,9 @@ func connect() error {
 
 	// 发送/接收心跳消息
 	for {
-		sendHeartbeat(conn)
-		receiveHeartbeat(conn)
-		time.Sleep(time.Second * 5)
+		go sendHeartbeat(conn)
+		go receiveHeartbeat(conn)
+		// time.Sleep(time.Second * 5)
 	}
 }
 
@@ -115,6 +134,7 @@ func RecvMessage(conn net.Conn, nLen int) ([]byte, error) {
 func main() {
 	err := connect()
 	if err != nil {
-		panic(err)
+		log.Println(err)
+		// panic(err)
 	}
 }
