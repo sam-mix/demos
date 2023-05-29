@@ -23,5 +23,9 @@ gen-proto:
 tidy:
 	@go mod tidy
 
+.PHONY: cp-pb
+cp-pb:
+	@/bin/cp -a ../kxmj-server/pb/*.pb.go ./pb/
+
 
 

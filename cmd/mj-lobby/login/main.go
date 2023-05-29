@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/rand"
 	"net"
+	"time"
 
 	"google.golang.org/protobuf/proto"
 )
@@ -105,9 +106,11 @@ func connect() error {
 
 	// 发送/接收心跳消息
 	for {
-		go sendHeartbeat(conn)
-		go receiveHeartbeat(conn)
-		// time.Sleep(time.Second * 5)
+		// go sendHeartbeat(conn)
+		// go receiveHeartbeat(conn)
+		sendHeartbeat(conn)
+		receiveHeartbeat(conn)
+		time.Sleep(time.Second * 5)
 	}
 }
 
