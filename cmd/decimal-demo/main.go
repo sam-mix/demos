@@ -21,6 +21,7 @@ func main() {
 	d := a.Div(b)
 	e := a.Mul(b)
 	f := a.Sub(b)
+	fmt.Println("a.LessThan(b): ", a.LessThan(b))
 	fmt.Println(c)
 	fmt.Println(d)
 	fmt.Println(e)
