@@ -77,6 +77,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -123,6 +124,7 @@ func main() {
 	// 创建4个玩家
 	go func() {
 		for i := 1; ; i++ {
+			time.Sleep(time.Duration(rand.Int63n(3)+3) * time.Second)
 			waitQueue <- &player{id: i, status: 0}
 
 		}
